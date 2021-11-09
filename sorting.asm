@@ -4,7 +4,6 @@ section '.text' executable
 public func
 
 ; void func (int32_t* input_array, size_t size);
-
 func:
     ; RDI - поінтер на початок масиву
     ; RSI - size
@@ -14,7 +13,6 @@ func:
 
     mov rax, 0
     mov rbx, 0
-    ; mov r9, 0
     jmp before_outer_loop
 
 before_outer_loop:
@@ -29,7 +27,7 @@ outer_loop:
 before_inner_loop:
     mov r9, rsi
     sub r9, rax
-    cmp rbx, r9 ; *тут потім можна зробити оптимізований bubble sort до n - i - 1 елементу
+    cmp rbx, r9
     jl inner_loop
     
     ; якщо j >= n - 1, тоді йдемо до outer_loop
@@ -53,7 +51,6 @@ swap:
     mov dword [rdi + 4*rbx], edx
 
     inc rbx
-    ; inc rax
     jmp before_inner_loop
 
 end_of_func:
