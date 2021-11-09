@@ -11,8 +11,8 @@ func:
     push rbx
     dec rsi             ; зменшуємо rsi, щоб цикл виконувся до індексу size-1
 
-    mov rax, 0
-    mov rbx, 0
+    xor rax, rax
+    xor rbx, rbx
     jmp before_outer_loop
 
 before_outer_loop:
@@ -21,7 +21,7 @@ before_outer_loop:
     jmp end_of_func     ; якщо i = size - 1 - зовнішній цикл закінчується, завершуємо програму
 
 outer_loop:
-    mov rbx, 0          ; j = 0
+    xor rbx, rbx          ; j = 0
     jmp before_inner_loop
 
 before_inner_loop:
