@@ -9,39 +9,36 @@ func:
     ; RSI - size
     ; i - rax, j - rbx
     push rbx
-    dec rsi
+    dec rsi             ; зменшуємо rsi, щоб цикл виконувся до індексу size-1
 
     mov rax, 0
     mov rbx, 0
     jmp before_outer_loop
 
 before_outer_loop:
-    cmp rax, rsi
+    cmp rax, rsi        ; перевіряємо умову i <= size - 1
     jle outer_loop
-    jmp end_of_func
+    jmp end_of_func     ; якщо i = size - 1 - зовнішній цикл закінчується, завершуємо програму
 
 outer_loop:
-    mov rbx, 0
+    mov rbx, 0          ; j = 0
     jmp before_inner_loop
 
 before_inner_loop:
     mov r9, rsi
     sub r9, rax
-    cmp rbx, r9
+    cmp rbx, r9         ; перевіряємо умову j < n-i-1
     jl inner_loop
     
-    ; якщо j >= n - 1, тоді йдемо до outer_loop
-    inc rax
+    inc rax             ; якщо j >= n-i-1, тоді i++, йдемо до outer_loop
     jmp before_outer_loop
 
 inner_loop:
-    ; edx - j+1 -ий елемент
-    mov edx, dword [rdi + 4*rbx + 4]
-    cmp dword [rdi + 4*rbx], edx
-    jg swap
+    mov edx, dword [rdi + 4*rbx + 4]    ; edx - j+1 -ий елемент
+    cmp dword [rdi + 4*rbx], edx        ; перевіряємо чи input_array[j] > input_array[j+1]
+    jg swap                             ; якщо виконується, то міняємо елементи місцями
 
-    inc rbx
-    ; inc rax
+    inc rbx                             ; j++
     jmp before_inner_loop
 
 swap:
