@@ -1,19 +1,16 @@
 include 'format/format.inc' 
-
 format ELF64
-
 section '.text' executable
-
 public func
-; void func (float* a, float* b, float* x, size_t size);
+
 func:
 ; float* a - RDI
 ; float* b - RSI
 ; float* x - RDX
 ; size_t size - RCX
 ; index i - RAX
-    xor rax, rax     ; i = 0
-    dec rcx         ; n = size - 1
+    xor rax, rax        ; i = 0
+    dec rcx             ; n = size - 1
     jmp loop_condition
 
 loop_condition:
@@ -34,6 +31,6 @@ loop_equation:
     jmp loop_condition
 
 end_of_func:
-    xor ebx, ebx
-    cvtsi2ss xmm0, ebx
+    xor ebx, ebx        ; not sure чи це потрібно робити
+    cvtsi2ss xmm0, ebx  ; ну і відповідно це теж
     ret
