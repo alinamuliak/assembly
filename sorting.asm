@@ -8,7 +8,6 @@ func:
     ; RDI - поінтер на початок масиву
     ; RSI - size
     ; i - rax, j - rbx
-    push rax
     push rbx
     dec rsi             ; зменшуємо rsi, щоб цикл виконувся до індексу size-1
 
@@ -52,6 +51,6 @@ swap:
     jmp before_inner_loop
 
 end_of_func:
-    pop rax
+    xor rax, rax
     pop rbx
     ret
