@@ -9,6 +9,7 @@ func:
 ; float* x - RDX
 ; size_t size - RCX
 ; index i - RAX
+    push rbx
     xor rax, rax        ; i = 0
     dec rcx             ; n = size - 1
     jmp loop_condition
@@ -31,6 +32,7 @@ loop_equation:
     jmp loop_condition
 
 end_of_func:
-    xor ebx, ebx        ; not sure чи це потрібно робити
-    cvtsi2ss xmm0, ebx  ; ну і відповідно це теж
+    pop rbx
+    xor ebx, ebx
+    cvtsi2ss xmm0, ebx              ; чистимо xmm0
     ret
